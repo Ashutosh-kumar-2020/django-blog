@@ -1,0 +1,363 @@
+{% extends 'base.html' %}
+
+{% block title %}
+Home - Hindi Techpoint
+{% endblock title %}
+
+{% block body %}
+
+<style>
+    .gap-between
+    {
+        margin-right: 15px;
+        
+    }
+
+    
+    
+
+    .container {
+    margin: 0 auto;
+    width: 100%;
+    text-align: center;
+    font-size: 0;
+    font-family: Arial, Helvetica, sans-serif;
+    font-weight: 400;
+    background: #ffffff;
+}
+
+h2.title {
+    position: relative;
+    margin-bottom: 15px;
+    padding-bottom: 15px;
+    font-size: 30px;
+    color: #222222;
+}
+
+h2.title::after {
+    position: absolute;
+    content: "";
+    width: 50px;
+    height: 3px;
+    left: calc(50% - 25px);
+    bottom: 0;
+    background: #222222;
+}
+
+p {
+    position: relative;
+    margin: 15px auto;
+    font-size: 16px;
+    color: #222222;
+}
+
+.mybtn {
+    position: relative;
+    display: inline-block;
+    margin: 15px;
+    padding: 12px 27px;
+    text-align: center;
+    font-size: 16px;
+    letter-spacing: 1px;
+    text-decoration: none;
+    color: #999999;
+    background: #ffffff;
+    border: 3px solid #999999;
+    cursor: pointer;
+    transition: ease-out 0.5s;
+    -webkit-transition: ease-out 0.5s;
+    -moz-transition: ease-out 0.5s;
+}
+
+.mybtn.mybtn-border-1::after,
+.mybtn.mybtn-border-1::before {
+    position: absolute;
+    content: "";
+    width: 0%;
+    height: 0%;
+    visibility: hidden;
+}
+
+.mybtn.mybtn-border-1::after {
+    bottom: -3px;
+    right: -3px;
+    border-left: 3px solid #222222;
+    border-bottom: 3px solid #222222;
+    transition: width .1s ease .1s, height .1s ease, visibility 0s .2s;
+}
+
+.mybtn.mybtn-border-1::before {
+    top: -3px;
+    left: -3px;
+    border-top: 3px solid #222222;
+    border-right: 3px solid #222222;
+    transition: width .1s ease .3s, height .1s ease .2s, visibility 0s .4s;
+}
+
+.mybtn.mybtn-border-1:hover {
+    animation: pulse 1s ease-out .4s;
+    color: #222222;
+}
+
+.mybtn.mybtn-border-1:hover::after,
+.mybtn.mybtn-border-1:hover::before {
+    width: calc(100% + 3px);
+    height: calc(100% + 3px);
+    visibility: visible;
+    transition: width .1s ease .2s, height .1s ease .3s, visibility 0s .2s;
+}
+
+.mybtn.mybtn-border-1:hover::after {
+    transition: width .1s ease .2s, height .1s ease .3s, visibility 0s .2s;
+}
+
+.mybtn.mybtn-border-1:hover::before {
+    transition: width .1s ease, height .1s ease .1s;
+}
+
+.mybtn.mybtn-border-2::after,
+.mybtn.mybtn-border-2::before {
+    position: absolute;
+    content: "";
+    width: 0;
+    height: 0;
+    transition: .5s;
+}
+
+.mybtn.mybtn-border-2::after {
+    top: -3px;
+    left: -3px;
+    border-top: 3px solid transparent;
+    border-left: 3px solid transparent;
+}
+
+.mybtn.mybtn-border-2::before {
+    bottom: -3px;
+    right: -3px;
+    border-bottom: 3px solid transparent;
+    border-right: 3px solid transparent;
+}
+
+.mybtn.mybtn-border-2:hover {
+    color: #222222;
+}
+
+.mybtn.mybtn-border-2:hover::after,
+.mybtn.mybtn-border-2:hover::before {
+    width: calc(50% + 3px);
+    height: calc(50% + 3px);
+    border-color: #222222;
+}
+
+.mybtn.mybtn-border-3::after,
+.mybtn.mybtn-border-3::before {
+    position: absolute;
+    content: "";
+    width: 0;
+    height: 0;
+    transition: .5s;
+}
+
+.mybtn.mybtn-border-3::after {
+    top: -9px;
+    left: -9px;
+    border-top: 3px solid transparent;
+    border-left: 3px solid transparent;
+}
+
+.mybtn.mybtn-border-3::before {
+    bottom: -9px;
+    right: -9px;
+    border-bottom: 3px solid transparent;
+    border-right: 3px solid transparent;
+}
+
+.mybtn.mybtn-border-3:hover {
+    color: #222222;
+}
+
+.mybtn.mybtn-border-3:hover::after,
+.mybtn.mybtn-border-3:hover::before {
+    width: 30px;
+    height: 30px;
+    border-color: #222222;
+}
+
+.mybtn.mybtn-border-4::after,
+.mybtn.mybtn-border-4::before {
+    position: absolute;
+    content: "";
+    width: 0;
+    height: 0;
+    transition: .5s;
+}
+
+.mybtn.mybtn-border-4::after {
+    top: -9px;
+    left: -9px;
+    border-top: 3px solid transparent;
+    border-left: 3px solid transparent;
+}
+
+.mybtn.mybtn-border-4::before {
+    bottom: -9px;
+    right: -9px;
+    border-bottom: 3px solid transparent;
+    border-right: 3px solid transparent;
+}
+
+.mybtn.mybtn-border-4:hover {
+    color: #222222;
+}
+
+.mybtn.mybtn-border-4:hover::after,
+.mybtn.mybtn-border-4:hover::before {
+    width: calc(100% + 15px);
+    height: calc(100% + 15px);
+    border-color: #222222;
+}
+
+.mybtn.mybtn-border-5::after,
+.mybtn.mybtn-border-5::before {
+    position: absolute;
+    content: "";
+    width: 0;
+    height: 0;
+    transition: .5s;
+}
+
+.mybtn.mybtn-border-5::after {
+    top: 0;
+    left: 0;
+    border-top: 3px solid transparent;
+}
+
+.mybtn.mybtn-border-5::before {
+    bottom: 0;
+    right: 0;
+    border-bottom: 3px solid transparent;
+}
+
+.mybtn.mybtn-border-5:hover {
+    color: #222222;
+}
+
+.mybtn.mybtn-border-5:hover::after,
+.mybtn.mybtn-border-5:hover::before {
+    width: 100%;
+    height: 100%;
+    border-color: #222222;
+}
+
+
+    
+</style>
+
+<section class="container my-4 bg-light">
+    <!-- https://yt3.ggpht.com/e2hoOmnWoLs-D0ks2c8VtUYHe_T55egJhvCG4o-H_v_wh9uc_BSbXeiusPb-oTdiZPN80q2epQ=w320-fcrop64=1,00000000ffffffff-k-c0xfff -->
+
+    <div class="container my-4 bg-light">
+
+         <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel">
+        <div class="carousel-indicators">
+          <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+          <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1" aria-label="Slide 2"></button>
+          <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2" aria-label="Slide 3"></button>
+        </div>
+        <div class="carousel-inner">
+          <div class="carousel-item active">
+            <img src="https://yt3.ggpht.com/e2hoOmnWoLs-D0ks2c8VtUYHe_T55egJhvCG4o-H_v_wh9uc_BSbXeiusPb-oTdiZPN80q2epQ=w320-fcrop64=1,00000000ffffffff-k-c0xfff" class="d-block w-100" alt="...">
+          </div>
+          <div class="carousel-item">
+            <img src="https://yt3.ggpht.com/e2hoOmnWoLs-D0ks2c8VtUYHe_T55egJhvCG4o-H_v_wh9uc_BSbXeiusPb-oTdiZPN80q2epQ=w320-fcrop64=1,00000000ffffffff-k-c0xfff" class="d-block w-100" alt="...">
+          </div>
+          <div class="carousel-item">
+            <img src="https://yt3.ggpht.com/e2hoOmnWoLs-D0ks2c8VtUYHe_T55egJhvCG4o-H_v_wh9uc_BSbXeiusPb-oTdiZPN80q2epQ=w320-fcrop64=1,00000000ffffffff-k-c0xfff" class="d-block w-100" alt="...">
+          </div>
+        </div>
+        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
+          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+          <span class="visually-hidden">Previous</span>
+        </button>
+        <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
+          <span class="carousel-control-next-icon" aria-hidden="true"></span>
+          <span class="visually-hidden">Next</span>
+        </button>
+      </div>
+
+    </div>
+
+
+</section>
+
+<section class="container my-4 bg-light">
+<div class="container my-4 d-flex">
+
+    <div class="bg-light row row-cols-1 row-cols-md-2 g-4">
+        <div class="col bg-light">
+          <div class="card">
+            <img src="/static/media/images/home-img-1.jpg" class="card-img-top" alt="...">
+            <div class="card-body">
+                <h5 class="card-title">Free video tutorials</h5>
+              <p class="card-title">We upload free video on our YouTube channel so make sure you subscribe :)</p>
+              <center>
+                  <button class="mybtn mybtn-success mx-2 mb-2"  style="width: 80%;">Browse videos</button>
+              </center>
+            </div>
+            
+          </div>
+        </div>
+
+        <div class="col">
+          <div class="card">
+            <img height="300" src="/static/media/images/home-img-2.jpg" class="card-img-top" alt="...">
+            <div class="card-body">
+              <h5 class="card-title">Coding Blogs</h5>
+              <p class="card-text">We upload coding articles on a regular basis so don't forget to visit our blo</p>
+              <center>
+                <a href="/blog">
+                  <button class="mybtn mybtn-danger mx-2 mb-2"  style="width: 80%;">Browse Blog</button>
+                </a>
+
+                
+            </center>
+            </div>
+          </div>
+        </div>
+
+
+        <div class="col">
+          <div class="card">
+            <img height="300" src="/static/media/images/home-img-3.jpg" class="card-img-top" alt="...">
+            <div class="card-body">
+              <h5 class="card-title">Contact ME :)</h5>
+              <p class="card-text">You can contact me anytime if you have doubt regarding anything :) </p>
+              <center>
+                <a href="/contact">
+                  <button class="mybtn mybtn-primary mx-2 mb-2"  style="width: 80%;">Contact Me :)</button>
+                </a>
+            </center>
+            </div>
+          </div>
+        </div>
+
+
+        <div class="col">
+          <div class="card">
+            <img height="300" src="/static/media/images/home-img-4.jpg" class="card-img-top" alt="...">
+            <div class="card-body">
+              <h5 class="card-title">Our Community Forum</h5>
+              <p class="card-text">We have recently created a community forum for all our logged in users.</p>
+              <center>
+                <button class="mybtn mybtn-secondary mx-2 mb-2"  style="width: 80%;">Visit Forum</button>
+            </center>
+            </div>
+          </div>
+        </div>
+      </div>
+
+</div>
+
+</section>
+
+{% endblock body %}
