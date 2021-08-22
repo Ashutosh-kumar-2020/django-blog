@@ -1,0 +1,209 @@
+{% extends 'base.html' %}
+{% block title %}
+{{post.title}} - Hindi Techpoint
+{% endblock title %}
+
+{% load humanize %}
+
+{% block body %}
+<link rel="stylesheet" href="/static/css/blogspot.css">
+<section class="current-post-container">
+<div class="container my-4">
+
+    <div class="post-info container">
+
+    <h2 class="text-dark">{{post.title}}</h2>
+    <p>{{post.timeStamp}}</p>
+    <p>Posted by :- <a style="text-decoration: none;" href="/authors/{{post.author}}">{{post.author}}</a></p>
+    <a style="text-decoration: none;" href="#someone-comment">view Comments</a>
+    </div>
+    <hr>
+    <div class="post-text container my-4">
+        <div class="post-content">
+    <p>
+        {{post.content}}
+    </p>
+</div>
+    </div>
+</div>
+</section>
+
+<hr>
+<section class="other-posts container my-4">
+    <h4
+     class="text-center you-may-like">You may like :)</h4>
+    <hr>
+    <div class="container my-4">
+        <div class="card-group">
+            {% for some_posts in allPosts %}
+            <div class="card">
+              <a href="/blog/{{some_posts.slug}}"><img src="https://venngage-wordpress.s3.amazonaws.com/uploads/2020/10/Anatomy-of-the-Perfect-Blog-Post.png" class="card-img-top" alt="Post image"></a>
+              <div class="card-body">
+                <a style="text-decoration: none;" href="/blog/{{some_posts.slug}}"><h5 class="card-title">{{some_posts.title}}</h5></a>
+                <p class="card-text">{{some_posts.content| truncatechars:50}}</p>
+                <p class="card-text"><small class="text-muted">Posted on
+                    {{some_posts.timeStamp}} by <a style="text-decoration: none;" href="/authors/{{some_posts.author}}">{{some_posts.author}}</small></p></a>
+
+            </div>
+            </div>
+
+            {% endfor %}
+
+            </div>
+          </div>
+    </div>
+</section>
+
+<div class="modal fade" id="ReportModal" tabindex="-1" aria-labelledby="ReportModal" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 style="text-align: center;" class="modal-title text-center" id="signupModal">Report User</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body container">
+            <form method="POST" action="/reportUser">
+            <div class="form-check">
+                <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1">
+                <label class="form-check-label" for="flexRadioDefault1">
+                    Unwanted commercial content or spam
+                </label>
+              </div>
+
+              <hr>
+
+              <div class="form-check">
+                <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault2" checked>
+                <label class="form-check-label" for="flexRadioDefault2">
+                    Pornography or sexually explicit material
+                </label>
+              </div>
+
+              <hr>
+
+              <div class="form-check">
+                <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault3" checked>
+                <label class="form-check-label" for="flexRadioDefault3">
+                    Child abuse
+                </label>
+              </div>
+
+              <hr>
+
+              <div class="form-check">
+                <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault4" checked>
+                <label class="form-check-label" for="flexRadioDefault4">
+                    Hate speech or graphic violence
+                    Harassment or bullying
+                </label>
+              </div>
+
+              <hr>
+
+              <div class="form-check">
+                <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault5" checked>
+                <label class="form-check-label" for="flexRadioDefault5">
+                    Harassment or bullying
+                </label>
+              </div>
+              <br>
+
+              <button style="
+              display: block;
+              margin: auto;" type="submit" class="btn btn-danger">Submit</button>
+
+            </form>
+        </div>
+      </div>
+    </div>
+  </div>
+
+<hr>
+
+
+{% if user.is_authenticated %}
+<section class="comment-section container">
+    <h4 class="text-center">Comment :-</h4>
+    <hr>
+    <div id="comment-container" class="container my-4 write-comment">
+        <div class="comment-input container">
+            <form action="/blog/postComment" method="POST" class="form-control my-4">
+                {% csrf_token %}
+            <div id="CommentContainer" class="CommentContainer container">
+            <center>
+                <input type="hidden" name="postSno" id="postSno" value="{{post.sno}}">
+
+                <input type="hidden" name="parentSno" id="postSno" value="">
+
+                <textarea
+                    name="commentContent" id="commentContent" cols="10" rows="5" class="form-control justified" placeholder="Click here if you want to post a comment"></textarea>
+            </center>
+                <br>
+                <center>
+                    <div class="submit-btn-container">
+                        <button style="width: 30%;" disabled class="btn btn-danger comment-btn" id="comment_btn" type="submit">Comment</button>
+                    </div>
+                </center>
+            </div>
+            </form>
+        </div>
+        <hr>
+        <div class="other-comments container my-4">
+        </div>
+    </div>
+</section>
+
+{% else %}
+
+<div
+class="only-logged-in container">
+    <h4 class="text-center">Only logged in users can post comments</h4>
+    <hr>
+    <center>
+        <button data-bs-toggle="modal"
+        data-bs-target="#signinModal" style=" width: 30%;" class="btn btn-danger">Login</button>
+    </center>
+</div>
+
+<hr>
+
+{% endif %}
+
+<section class="comments">
+    <div class="container my-4">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.1.0/css/bootstrap.min.css"/>
+
+<div id="someone-comment" class="someone-comment container">
+
+{% for comment in comments %}
+
+
+<div style="width: 80%;" class="one-comment-div container mt-3">
+<div class="d-flex border p-3">
+    <a href="#"><img src="/static/media/images/user.png" alt="John Doe"
+         class="flex-shrink-0 me-3 mt-3 rounded-circle" style="width:60px;height:60px;"></a>
+    <div>
+        <h5>{{comment.user.username}} - <span class="badge bg-secondary">{{comment.timestamp | naturaltime}}</span>
+            <span data-bs-toggle="modal"
+            data-bs-target="#ReportModal" class="report-user">Report</span>
+        </h5>
+        <p>{{comment.comment}}</p>
+
+
+    </div>
+</div>
+</div>
+
+{% endfor %}
+
+
+</div>
+</div>
+</section>
+
+<!-- <script src="/static/js/validate.js"></script> -->
+<script src="/static/js/validate2.js"></script>
+
+
+{% endblock body %}
+
