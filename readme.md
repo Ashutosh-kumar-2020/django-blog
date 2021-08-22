@@ -3,6 +3,13 @@
 
 This is a simple but powerful django blog with comment system, it's still in devlopment. For The UI, Bootstrap is Used but you are free to use a custom design.
 
+## Installation
+
+
+```bash
+  pip install django
+```
+
 # Features
 - Search Functionality
 - Admin Login/Logout
