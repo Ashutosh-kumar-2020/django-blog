@@ -1,0 +1,41 @@
+{% extends 'base.html' %}
+
+{% block title %}
+Contact - Hindi Techpoint
+{% endblock title %}
+
+{% block body %}
+
+
+<section class="container my-4">
+<div class="container">
+    <form action="/contact" method="POST" class="form-control">
+    {% csrf_token %}
+        <input required type="text" name="name" placeholder="Enter Your Name" class="form-control">
+
+        <br>
+
+        <input required type="email" name="email" placeholder="Enter Your Email" class="form-control">
+
+        <br>
+
+        <select required class="form-control" name="issue_type" id="issue_type">
+            <option disabled selected>Choose Your issue issue</option>
+            <option value="Bug-glitch">Bug/glitch issue</option>
+            <option value="Privacy issue">Privacy issue</option>
+            <option value="Abusing issue">Abusing issue</option>
+            <option value="Something Else">Something Else</option>
+        </select>
+
+        <br>
+
+        <textarea required class="form-control" name="desc" id="desc" cols="30" rows="10" placeholder="Describe your issue"></textarea>
+
+        <br>
+
+        <button type="submit" class="btn btn-primary">Submit</button>
+    </form>
+</div>
+</section>
+
+{% endblock body %}
